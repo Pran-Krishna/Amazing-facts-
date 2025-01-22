@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazing Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .fact {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Amazing Facts</h1>
+        <select id="topicSelect">
+            <option value="">Select a Topic</option>
+            <option value="Technology">Technology</option>
+            <option value="Space">Space</option>
+            <option value="History of Programming">History of Programming</option>
+            <option value="Indian Culture">Indian Culture</option>
+            <option value="Sports">Sports</option>
+        </select>
+        <div id="factsContainer"></div>
+    </div>
+    <script>
+        const factsData = {
+            "Technology": [
+                {
+                    "fact": "Quantum Computing",
+                    "description": "Quantum computers can perform complex calculations at speeds unattainable by classical computers, potentially solving problems in seconds that would take traditional computers thousands of years."
+                },
+                {
+                    "fact": "Internet of Things (IoT)",
+                    "description": "By 2025, it is estimated that there will be over 75 billion connected devices worldwide, revolutionizing how we interact with technology in our daily lives."
+                },
+                {
+                    "fact": "Artificial Intelligence",
+                    "description": "AI can analyze vast amounts of data and learn from it, enabling applications in healthcare, finance, and autonomous vehicles, among others."
+                },
+                {
+                    "fact": "Blockchain",
+                    "description": "Originally developed for Bitcoin, blockchain technology is now being used for secure transactions in various industries, including supply chain management and healthcare."
+                },
+                {
+                    "fact": "5G Technology",
+                    "description": "The rollout of 5G networks promises to deliver internet speeds up to 100 times faster than 4G, enabling advancements in smart cities and connected devices."
+                },
+                {
+                    "fact": "Augmented Reality (AR)",
+                    "description": "AR technology overlays digital information onto the real world, enhancing experiences in gaming, education, and retail."
+                },
+                {
+                    "fact": "Biometric Security",
+                    "description": "Fingerprint and facial recognition technologies are becoming standard for securing devices and personal information, providing a higher level of security than traditional passwords."
+                },
+                {
+                    "fact": "Renewable Energy Tech",
+                    "description": "Advances in solar and wind energy technologies are making renewable energy sources more efficient and cost-effective, contributing to a sustainable future."
+                },
+                {
+                    "fact": "3D Printing",
+                    "description": "This technology allows for the creation of complex structures and prototypes quickly and at a lower cost, impacting industries from manufacturing to healthcare."
+                },
+                {
+                    "fact": "Cybersecurity",
+                    "description": "As technology evolves, so do cyber threats. The cybersecurity industry is projected to grow to over $300 billion by 2024, highlighting the importance of protecting digital assets."
+                }
+            ],
+            "Space": [
+                {
+                    "fact": "Expanding Universe",
+                    "description": "The universe is continuously expanding, and galaxies are moving away from each other at increasing speeds due to dark energy."
+                },
+                {
+                    "fact": "Black Holes",
+                    "description": "Black holes are regions in space where gravity is so strong that nothing, not even light, can escape from them."
+                },
+                {
+                    "fact": "Mars Exploration",
+                    "description": "NASA's Perseverance rover, which landed on Mars in 2021, is searching for signs of ancient life and collecting samples for future return to Earth."
+                },
+                {
+                    "fact": "Exoplanets",
+                    "description": "Thousands of exoplanets have been discovered outside our solar system, with some located in the 'habitable zone' where conditions may support life."
+                },
+                {
+                    "fact": "Voyager Probes",
+                    "description": "Launched in 1977, the Voyager probes are the farthest human-made objects from Earth, providing valuable data about the outer planets and interstellar space."
+                },
+                {
+                    "fact": "International Space Station (ISS)",
+                    "description": "The ISS is a unique laboratory where astronauts conduct experiments in microgravity, contributing to our understanding of science and technology."
+                },
+                {
+                    "fact": "Asteroids",
+                    "description": "There are millions of asteroids in our solar system, and some are considered potential threats to Earth, while others may be valuable for mining resources."
+                },
+                {
+                    "fact": "Dark Matter",
+                    "description": "Approximately 27% of the universe is made up of dark matter, which does not emit light or energy, making it invisible and detectable only through its gravitational effects."
+                },
+                {
+                    "fact": "The Moon's Water",
+                    "description": "Recent missions have confirmed the presence of water ice on the Moon, which could be crucial for future lunar exploration and colonization."
+                },
+                {
+                    "fact": "Time Dilation",
+                    "description": "According to Einstein's theory of relativity, time moves slower in stronger gravitational fields, meaning time passes differently for astronauts in space compared to people on Earth."
+                }
+            ],
+            "History of Programming": [
+                {
+                    "fact": "First Computer Programmer",
+                    "description": "Ada Lovelace is often considered the first computer programmer for her work on Charles Babbage's early mechanical general-purpose computer, the Analytical Engine."
+                },
+                {
+                    "fact": "ENIAC",
+                    "description": "The Electronic Numerical Integrator and Computer (ENIAC), completed in 1945, was one of the first general-purpose computers and could perform thousands of calculations per second."
+                },
+                {
+                    "fact": "FORTRAN",
+                    "description": "Developed in the 1950s, FORTRAN (Formula Translation) was one of the first high-level programming languages and is still used in scientific computing today."
+                },
+                {
+                    "fact": "C Language",
+                    "description": "Created in the early 1970s, the C programming language has influenced many modern programming languages, including C++, Java, and Python."
+                },
+                {
+                    "fact": "Open Source Movement",
+                    "description": "The open-source software movement began in the late 20th century, promoting collaborative development and sharing of software source code."
+                },
+                {
+                    "fact": "Object-Oriented Programming",
+                    "description": "This programming paradigm, which organizes software design around data, or objects, was popularized in the 1980s with languages like Smalltalk and C++."
+                },
+                {
+                    "fact": "The Internet",
+                    "description": "The development of programming languages and protocols in the 1990s led to the rapid expansion of the internet, transforming how we communicate and access information."
+                },
+                {
+                    "fact": "Agile Methodology",
+                    "description": "Introduced in the early 2000s, Agile methodology emphasizes iterative development and collaboration, revolutionizing software development practices."
+                },
+                {
+                    "fact": "Machine Learning",
+                    "description": "The rise of machine learning in the 21st century has transformed programming, allowing computers to learn from data and improve their performance over time."
+                },
+                {
+                    "fact": "Programming for Everyone",
+                    "description": "Initiatives like Code.org and Scratch aim to teach programming to children and beginners, making coding accessible to a broader audience."
+                }
+            ],
+            "Indian Culture": [
+                {
+                    "fact": "Diverse Languages",
+                    "description": "India is home to over 1,600 spoken languages, with Hindi and English being the most widely used for communication."
+                },
+                {
+                    "fact": "Festivals",
+                    "description": "India celebrates a multitude of festivals, including Diwali, Holi, Eid, and Christmas, reflecting its rich cultural diversity and traditions."
+                },
+                {
+                    "fact": "Yoga and Meditation",
+                    "description": "Originating in ancient India, yoga and meditation practices have gained global popularity for their physical and mental health benefits."
+                },
+                {
+                    "fact": "Cuisine",
+                    "description": "Indian cuisine is known for its diverse flavors and spices, with each region offering unique dishes, such as biryani, dosa, and butter chicken."
+                },
+                {
+                    "fact": "Traditional Clothing",
+                    "description": "India has a rich tradition of clothing, with garments like sarees, turbans, and kurta-pajamas representing different cultures and regions."
+                },
+                {
+                    "fact": "Art and Architecture",
+                    "description": "India boasts a rich heritage of art and architecture, including ancient temples, Mughal palaces, and modern structures like the Lotus Temple."
+                },
+                {
+                    "fact": "Bollywood",
+                    "description": "The Indian film industry, known as Bollywood, produces more films than any other country, with a significant influence on global cinema and culture."
+                },
+                {
+                    "fact": "Ayurveda",
+                    "description": "This ancient system of medicine emphasizes balance in the body and mind, using natural remedies and holistic approaches to health."
+                },
+                {
+                    "fact": "Spirituality",
+                    "description": "India is the birthplace of several major religions, including Hinduism, Buddhism, Jainism, and Sikhism, contributing to its spiritual diversity."
+                },
+                {
+                    "fact": "Traditional Music and Dance",
+                    "description": "India has a rich tradition of classical music and dance forms, such as Bharatanatyam, Kathak, and Hindustani music, reflecting its cultural heritage."
+                }
+            ],
+            "Sports": [
+                {
+                    "fact": "Cricket",
+                    "description": "Cricket is one of the most popular sports in the world, especially in countries like India, Australia, and England, with the ICC Cricket World Cup being a major event."
+                },
+                {
+                    "fact": "Olympics",
+                    "description": "The modern Olympic Games were founded in 1896, and they have grown to include thousands of athletes from over 200 countries competing in various sports."
+                },
+                {
+                    "fact": "Soccer",
+                    "description": "Soccer (football) is the most popular sport globally, with an estimated 4 billion fans and major tournaments like the FIFA World Cup drawing massive audiences."
+                },
+                {
+                    "fact": "Basketball",
+                    "description": "Invented in 1891, basketball has become a major professional sport, particularly in the United States, with the NBA being one of the most lucrative leagues."
+                },
+                {
+                    "fact": "Marathon Running",
+                    "description": "The marathon distance of 26.2 miles was standardized in 1908, and it has become a popular long-distance running event worldwide."
+                },
+                {
+                    "fact": "Extreme Sports",
+                    "description": "Sports like BASE jumping, snowboarding, and rock climbing have gained popularity, attracting thrill-seekers and adventurers."
+                },
+                {
+                    "fact": "Esports",
+                    "description": "Competitive video gaming, or esports, has exploded in popularity, with professional players and teams competing for millions in prize money."
+                },
+                {
+                    "fact": "Women in Sports",
+                    "description": "Women's participation in sports has significantly increased over the years, with events like the Women's World Cup and the WNBA gaining prominence."
+                },
+                {
+                    "fact": "Sports Science",
+                    "description": "Advances in sports science, including nutrition, biomechanics, and psychology, have transformed training and performance for athletes."
+                },
+                {
+                    "fact": "Global Events",
+                    "description": "Major sporting events like the Olympics, FIFA World Cup, and Super Bowl bring together millions of fans and generate significant economic impact for host cities."
+                }
+            ]
+        };
+
+        document.getElementById('topicSelect').addEventListener('change', function() {
+            const selectedTopic = this.value;
+            const factsContainer = document.getElementById('factsContainer');
+            factsContainer.innerHTML = '';
+
+            if (selectedTopic) {
+                const facts = factsData[selectedTopic];
+                facts.forEach(fact => {
+                    const factDiv = document.createElement('div');
+                    factDiv.className = 'fact';
+                    factDiv.innerHTML = `<strong>${fact.fact}</strong>: ${fact.description}`;
+                    factsContainer.appendChild(factDiv);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
